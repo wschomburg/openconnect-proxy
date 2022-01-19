@@ -9,7 +9,7 @@ RUN set -xe \
                --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
                openconnect tinyproxy
 
-RUN apk add --no-cache ca-certificates wget \
+RUN apk add --no-cache ca-certificates wget procps\
     && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.30-r0/glibc-2.30-r0.apk \
     && apk add --no-cache --virtual .build-deps glibc-2.30-r0.apk gcc make musl-dev \
