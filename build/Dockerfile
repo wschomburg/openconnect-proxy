@@ -19,9 +19,9 @@ RUN apk add --no-cache ca-certificates wget procps\
     && cd microsocks-1.0.1 \
     && make \
     && make install \
-    # add vpn-slice with dependencies (dig) https://github.com/dlenski/vpn-slice
-    && apk add --no-cache python3 bind-tools && pip3 install --upgrade pip \
-    && pip3 install https://github.com/dlenski/vpn-slice/archive/master.zip \
+#    # add vpn-slice with dependencies (dig) https://github.com/dlenski/vpn-slice
+#    && apk add --no-cache python3 bind-tools && pip3 install --upgrade pip \
+#    && pip3 install https://github.com/dlenski/vpn-slice/archive/master.zip \
     # always add the docker DNS server
     && grep -qxF 'nameserver 127.0.0.11' /etc/resolv.conf || echo 'nameserver 127.0.0.11' >> /etc/resolv.conf \
     && apk del .build-deps wget
