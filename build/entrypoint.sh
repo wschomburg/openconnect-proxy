@@ -5,6 +5,13 @@ sed "s/^Port .*$/Port 8888/" -i /etc/tinyproxy.conf
 
 /usr/local/bin/microsocks -i 0.0.0.0 -p 8889 & 
 
+# Pivoxy config and start
+find /etc/privoxy -type f -name '*.new' | while read f; do mv "$f" "${f%.new}"; done
+
+sed -i "s/listen\-address  127\.0\.0\.1:8118/listen\-address  0\.0\.0\.0:8118/" /etc/privoxy/config
+
+privoxy /etc/privoxy/config
+
 run () {
   # Start openconnect
   if [[ -z "${OPENCONNECT_PASSWORD}" ]]; then
