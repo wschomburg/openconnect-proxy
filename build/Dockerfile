@@ -1,11 +1,13 @@
 FROM alpine:edge
-MAINTAINER Wolfgang Klinger <wolfgang@wazum.com>
 
 RUN apk add --no-cache libcrypto1.1 libssl1.1 libstdc++ --repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 RUN apk add --no-cache oath-toolkit-libpskc --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
 RUN apk add --no-cache nettle --repository http://dl-cdn.alpinelinux.org/alpine/edge/main
-# openconnect is not yet available on main
-RUN apk add --no-cache openconnect tinyproxy --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+RUN set -xe \
+    && apk add --no-cache nettle \
+    && apk add --no-cache \
+               --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+               openconnect tinyproxy
 
 RUN apk add --no-cache ca-certificates wget \
     && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
