@@ -26,6 +26,12 @@ run () {
   fi
 }
 
+if [[ ! -z "${OPENCONNECT_KEEPALIVE_TARGET}" ]]; then
+  # Ping target in background to keep connection open
+    while [ 1 ] ; do ping -c 2 ${OPENCONNECT_KEEPALIVE_TARGET} ; sleep 60 ; done > /dev/null 2>&1 &
+fi
+
+
 until (run); do
   echo "openconnect exited. Restarting process in 60 seconds…" >&2
   sleep 60
