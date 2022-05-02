@@ -16,6 +16,7 @@ set the environment variables in a `.env` file:
 	OPENCONNECT_OPTIONS=--authgroup <VPN Group> \
 		--servercert <VPN Server Certificate> --protocol=<Protocol> \
 		--reconnect-timeout 86400
+        OPENCONNECT_KEEPALIVE_TARGET=<hostname>
 
 _Don't use quotes around the values!_
 
